@@ -1,5 +1,9 @@
 package com.hun;
 
+import com.hun.dip.goodexample.EmailService;
+import com.hun.dip.goodexample.GoodNotification;
+import com.hun.dip.goodexample.MessageService;
+import com.hun.dip.goodexample.SmsService;
 import com.hun.lsp.Bird;
 import com.hun.lsp.Penguin;
 import com.hun.ocp.CreditCard;
@@ -28,5 +32,14 @@ public class Main {
 
         Bird penguin = new Penguin();
         penguin.fly();
+
+        // DIP 예제
+        MessageService service1 = new EmailService();
+        MessageService service2 = new SmsService();
+        GoodNotification notification1 = new GoodNotification(service1);
+        GoodNotification notification2 = new GoodNotification(service2);
+
+        notification1.notify("긴급 알림!");
+        notification2.notify("긴급 알림!");
     }
 }
